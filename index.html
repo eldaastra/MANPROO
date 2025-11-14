@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -39,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-/* CSS kamu aman, tidak ada masalah */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #a18cd1, #fbc2eb);
@@ -88,6 +86,7 @@ button {
 </style>
 
 <script>
+
 function updateSatuan() {
     const jenis = document.getElementById("jenis").value;
     const dari = document.getElementById("dari");
@@ -104,8 +103,8 @@ function updateSatuan() {
 
     if (satuan[jenis]) {
         satuan[jenis].forEach(s => {
-            dari.innerHTML += <option value="${s}">${s}</option>;
-            ke.innerHTML += <option value="${s}">${s}</option>;
+            dari.innerHTML += `<option value="${s}">${s}</option>`;
+            ke.innerHTML += `<option value="${s}">${s}</option>`;
         });
     }
 }
@@ -123,12 +122,13 @@ function updateSatuan() {
     <form method="POST">
         <select id="jenis" name="jenis" required onchange="updateSatuan()">
             <option value="">-- Pilih Jenis Konversi --</option>
-            <option value="suhu" <?= $jenis=='suhu'?'selected':'' ?>>Suhu</option>
+            <option value="suhu"    <?= $jenis=='suhu'?'selected':'' ?>>Suhu</option>
             <option value="panjang" <?= $jenis=='panjang'?'selected':'' ?>>Panjang</option>
-            <option value="berat" <?= $jenis=='berat'?'selected':'' ?>>Berat</option>
+            <option value="berat"   <?= $jenis=='berat'?'selected':'' ?>>Berat</option>
         </select>
 
-        <input type="number" step="0.01" name="nilai" placeholder="Masukkan nilai angka..." value="<?= htmlspecialchars($nilai) ?>" required>
+        <input type="number" step="0.01" name="nilai" placeholder="Masukkan nilai..." 
+               value="<?= htmlspecialchars($nilai) ?>" required>
 
         <select id="dari" name="dari" required></select>
         <select id="ke" name="ke" required></select>
